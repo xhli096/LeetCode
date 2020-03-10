@@ -14,3 +14,9 @@ a
 1src/main/java/com/xinghaol/programmer/FooBar.java,4/6/469b7df5da0be579dd09999192688a7af7797371
 c
 3src/main/java/com/xinghaol/programmer/MaxQueue.java,f/6/f6312319fad8afd5f71eff6691a00f3c84d9b737
+c
+3src/main/java/com/xinghaol/programmer/Solution.java,a/e/ae14eb7b01e38ac543fb191d4a44a765e365b1aa
+a
+1src/main/java/com/xinghaol/programmer/TwoSum.java,a/7/a75de4ced66b8bfcd7942f574398aafe2ab83c0e
+^
+.src/main/java/com/xinghaol/programmer/Fib.java,e/2/e2db4bc399773dc6d5ccba26ceaa2ec6bd7242fc
