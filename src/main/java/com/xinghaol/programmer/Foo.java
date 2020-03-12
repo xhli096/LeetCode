@@ -49,6 +49,9 @@ import java.util.concurrent.CountDownLatch;
 第一种方式是通过CountDownLatch设置屏障，这个是Java自带的
 第二种方式是通过设置一个Object类型的成员变量，辅以synchronized，通过wait & notifyAll进行控制
 第三种方式是通过volatile这个特性，这个特性可以保证可见性
+
+
+或者采用自旋的无限循环方式
  */
 public class Foo {
     /**
@@ -81,3 +84,62 @@ public class Foo {
         printThird.run();
     }
 }
+/*
+ private volatile int flag = 1;
+    public Foo() {
+
+    }
+
+    public void first(Runnable printFirst) throws InterruptedException {
+
+        // printFirst.run() outputs "first". Do not change or remove this line.
+        printFirst.run();
+        flag = 2;
+    }
+
+    public void second(Runnable printSecond) throws InterruptedException {
+        while(flag != 2);
+        // printSecond.run() outputs "second". Do not change or remove this line.
+        printSecond.run();
+        flag = 3;
+    }
+
+    public void third(Runnable printThird) throws InterruptedException {
+        while(flag != 3);
+        // printThird.run() outputs "third". Do not change or remove this line.
+        printThird.run();
+    }
+ */
+/*
+private int sign =0;
+    public  Foo() {
+
+    }
+
+    public synchronized void first(Runnable printFirst) throws InterruptedException {
+            printFirst.run();
+            sign=1;
+            notifyAll();
+    }
+
+    public synchronized void second(Runnable printSecond) throws InterruptedException {
+
+            while (sign != 1){
+                wait();
+            }
+
+            printSecond.run();
+            sign=2;
+            notifyAll();
+    }
+
+    public synchronized void third(Runnable printThird) throws InterruptedException {
+
+            while (sign != 2){
+                wait();
+            }
+
+            printThird.run();
+            sign=3;
+    }
+ */
