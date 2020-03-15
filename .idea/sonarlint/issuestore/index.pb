@@ -40,3 +40,9 @@ j
 :src/main/java/com/xinghaol/programmer/MajorityElement.java,4/9/49ed1053a57ad98d78aeb60ea6e457ae34b5c7be
 c
 3src/main/java/com/xinghaol/programmer/MaxValue.java,5/2/52cca62a2987e097872614b8fb66b153099672dd
+c
+3src/main/java/com/xinghaol/programmer/Exchange.java,1/7/1798dc96b1a6a1d75f8d72bce4ce3736ccb465b2
+f
+6src/main/java/com/xinghaol/programmer/LengthOfLIS.java,8/b/8b4e7aa22eeff0f500b312ce1320c588ddd1f1e9
+g
+7src/main/java/com/xinghaol/programmer/ReplaceSpace.java,a/e/aee92acc3f432854bc0b9287cf827568b78e2eb8
