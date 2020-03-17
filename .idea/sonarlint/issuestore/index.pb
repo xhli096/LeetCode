@@ -56,3 +56,7 @@ i
 9src/main/java/com/xinghaol/programmer/CompressString.java,2/e/2ea6f0d664f7e805a3cbcacd5712e8da76e47bab
 f
 6src/main/java/com/xinghaol/programmer/SpiralOrder.java,3/c/3c230ae655274e45ca4a880d113b81cd441e761f
+i
+9src/main/java/com/xinghaol/programmer/IsSubStructure.java,f/c/fc10a590905fe46fd84110e83597203ef6078b89
+j
+:src/main/java/com/xinghaol/programmer/CountCharacters.java,3/a/3ac4d406cd629da1137cacbc8fcb050071ebc9bc
