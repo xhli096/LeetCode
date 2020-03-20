@@ -60,3 +60,11 @@ i
 9src/main/java/com/xinghaol/programmer/IsSubStructure.java,f/c/fc10a590905fe46fd84110e83597203ef6078b89
 j
 :src/main/java/com/xinghaol/programmer/CountCharacters.java,3/a/3ac4d406cd629da1137cacbc8fcb050071ebc9bc
+b
+2src/main/java/com/xinghaol/programmer/MaxArea.java,d/4/d4d6836922e9d1fa1f139735209945d2e3260259
+h
+8src/main/java/com/xinghaol/programmer/RemoveElement.java,6/1/6112b9deaf283f96a5346f320263998540ca0e25
+m
+=src/main/java/com/xinghaol/programmer/IsRectangleOverlap.java,e/0/e085916429a4dc220cea6c7cd677377b6a33e332
+s
+Csrc/main/java/com/xinghaol/programmer/LengthOfLongestSubstring.java,5/4/54271aa53451c17605cb07b112316347e36bbf8d
