@@ -7,3 +7,13 @@
 
 
 在Java中可以使用PriorityQueue(优先队列来维护一个堆)
+
+Stack操作API
+public class Stack<E> extends Vector<E> ：
+Stack类代表后进先出（LIFO）堆栈的对象。 它扩展了类别Vector与五个操作，允许一个向量被视为堆栈。
+设置在通常的push和pop操作，以及作为一种方法来peek在堆栈，以测试堆栈是否为empty的方public Stack()
+public Stack() ：构造方法，创建一个空栈
+public E push(E item) ：将项目推送到此堆栈的顶部。 这与以下效果完全相同：
+public E pop()：删除此堆栈顶部的对象，并将该对象作为此函数的值返回。
+public boolean empty()：测试此堆栈是否为空
+public E peek() ：查看此堆栈顶部的对象，而不从堆栈中删除它。
