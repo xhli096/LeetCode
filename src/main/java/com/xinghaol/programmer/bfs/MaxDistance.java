@@ -1,4 +1,4 @@
-package com.xinghaol.programmer;
+package com.xinghaol.programmer.bfs;
 
 import java.util.ArrayDeque;
 import java.util.Queue;

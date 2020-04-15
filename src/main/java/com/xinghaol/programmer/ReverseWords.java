@@ -1,5 +1,7 @@
 package com.xinghaol.programmer;
 
+import java.util.regex.Pattern;
+
 /**
  * @author: lixinghao
  * @date: 2020/3/10 4:07 下午
@@ -43,6 +45,29 @@ public class ReverseWords {
             }
         }
 
+        return stringBuilder.toString();
+    }
+
+    public static void main(String[] args) {
+        reverseWords2("the sky    is blue");
+    }
+
+    /**
+     * 正则表达式
+     *
+     * @param s
+     * @return
+     */
+    public static String reverseWords2(String s) {
+        String[] split = Pattern.compile("\\s+").matcher(s).replaceAll(" ").split(" ");
+        StringBuilder stringBuilder = new StringBuilder();
+        boolean first = true;
+        for (int i = split.length - 1; i >= 0; i--) {
+            if (!split[i].isEmpty()) {
+                stringBuilder.append(first ? "" : " ").append(split[i]);
+                first = false;
+            }
+        }
         return stringBuilder.toString();
     }
 }
