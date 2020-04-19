@@ -1,4 +1,4 @@
-package com.xinghaol.programmer;
+package com.xinghaol.programmer.tree;
 
 /**
  * @author: lixinghao

@@ -1,0 +1,37 @@
+树中的层次遍历一般借助【队列】这种数据结构来实现；其余类型的非递归遍历一般借助【栈】来实现
+
+在借助【队列】或者【栈】的时候，通常需要使用while循环对树进行遍历，并向数据结构中添加节点。一般如下所写：
+栈：
+while(treeNode != null || !stack.isEmpty()) {
+    while(treeNode != null) {
+        // 将节点加入栈中
+    }
+    // 处理栈不为空的情况
+    if(!stack.isEmpty()) {
+
+    }
+}
+
+队列：
+在处理树的层次遍历时，一般借助【队列】这种数据结构，需要先将根节点加入到队列中，使用while循环进行循环遍历
+Queue<TreeNode> queue = new LinkedList();
+queue.offer(root);
+while(!queue.isEmpty()) {
+    // 此处是为了得到当前层，树具有节点的个数
+    int size = queue.size();
+    for (int i = 0; i < size; i++) {
+        // 循环取得当前层的所有节点
+        TreeNode currentNode = queue.poll();
+        // 可以取到当前节点的值
+        if (currentNode.left != null) {
+            // 可以加入队列
+        }
+        if (currentNode.right != null) {
+            // 可以加入队列
+        }
+    }
+}
+
+LeetCode中数的类型问题
+1、左叶子之和(https://leetcode-cn.com/problems/sum-of-left-leaves/
+2、二叉树的层次遍历 II（https://leetcode-cn.com/problems/binary-tree-level-order-traversal-ii/）
