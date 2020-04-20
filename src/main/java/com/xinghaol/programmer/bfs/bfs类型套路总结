@@ -9,8 +9,13 @@
     需要注意的问题：
         1、因为Tree本身是有向的，分层的，所以不需要表示是否已经访问过了；
         2、对于无向图来说，必须标志某一个节点是否已经访问了。为了防止同一个节点多次入队列，需要在访问前，就将该节点设置为已访问状态。
+4、岛屿类、数组类也是bfs的典型问题。
+    一般寻找岛屿的个数、距离1最远的0、距离0最远的1等等问题，都可以归类为BFS问题
+    这类问题，一般都也借助于队列来实现，向四个方向去探寻。在探寻过程中也需要使用flag数组，去判断某一个元素是否已经访问过了。
+    eg：com.xinghaol.programmer.bfs.NumIslands
 
 
 LeetCode中bfs类型的题目：
 1、https://leetcode-cn.com/problems/as-far-from-land-as-possible/
 2、https://leetcode-cn.com/problems/01-matrix/
+3、岛屿的数量：https://leetcode-cn.com/problems/number-of-islands/
