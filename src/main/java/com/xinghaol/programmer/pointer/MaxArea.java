@@ -1,4 +1,4 @@
-package com.xinghaol.programmer.point;
+package com.xinghaol.programmer.pointer;
 
 /**
  * @author: lixinghao
