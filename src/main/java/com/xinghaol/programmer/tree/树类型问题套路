@@ -32,6 +32,10 @@ while(!queue.isEmpty()) {
     }
 }
 
+二叉树的左右视图应该可以转化为层次遍历，然后去每一层的最左侧或最右侧的元素 => 相当于BFS广度优先遍历
+    也可以使用DFS的方式进行解决
+
 LeetCode中数的类型问题
 1、左叶子之和(https://leetcode-cn.com/problems/sum-of-left-leaves/
 2、二叉树的层次遍历 II（https://leetcode-cn.com/problems/binary-tree-level-order-traversal-ii/）
+3、二叉树的右视图 (https://leetcode-cn.com/problems/binary-tree-right-side-view/)
