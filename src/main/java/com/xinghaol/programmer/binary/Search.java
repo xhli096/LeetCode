@@ -44,4 +44,48 @@ public class Search {
 
         return -1;
     }
+
+
+    public int search2(int[] nums, int target) {
+        int length = nums.length;
+        if (length == 0) {
+            return -1;
+        }
+
+        int left = 0;
+        int right = length - 1;
+
+        while (left < right) {
+            int mid = left + (right - left + 1) / 2;
+
+            if (nums[mid] > nums[right]) {
+                // 中点位置大于最右侧的值，mid左侧的内容为有序
+                if (nums[left] <= target && target <= nums[mid]) {
+                    right = mid;
+                } else {
+                    left = mid + 1;
+                }
+            } else {
+                // mid右侧为有序
+                if (nums[mid] <= target && target <= nums[right]) {
+                    left = mid;
+                } else {
+                    right = mid - 1;
+                }
+            }
+        }
+
+        if (nums[left] == target) {
+            return left;
+        }
+
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        Search search = new Search();
+        int i = search.search2(new int[]{4, 5, 6, 7, 0, 1, 2}, 3);
+        System.out.println(i);
+    }
+
 }
