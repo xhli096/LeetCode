@@ -1,4 +1,4 @@
-package com.xinghaol.programmer;
+package com.xinghaol.programmer.pointer;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -27,9 +27,9 @@ public class LengthOfLongestSubstring {
     /**
      * 滑动窗口思想
      * 如果从索引 i 到 j−1 之间的子字符串 sij已经被检查为没有重复字符。我们只需要检查 s[j] 对应的字符是否已经存在于子字符串sij中。
-     * 通过使用 HashSet 作为滑动窗口，我们可以用 O(1)O(1) 的时间来完成对字符是否在当前的子字符串中的检查。
+     * 通过使用 HashSet 作为滑动窗口，我们可以用 O(1) 的时间来完成对字符是否在当前的子字符串中的检查。
      * 滑动窗口是数组/字符串问题中常用的抽象概念。 窗口通常是在数组/字符串中由开始和结束索引定义的一系列元素的集合，
-     * 即 [i, j)左闭，右开）。
+     * 即 [i, j)(左闭，右开）。
      * 而滑动窗口是可以将两个边界向某一方向“滑动”的窗口。例如，我们将 [i, j) 向右滑动 1 个元素，
      * 则它将变为 [i+1, j+1)（左闭，右开）。
      * 使用 HashSet 将字符存储在当前窗口 [i, j)（最初 j = i）中。
