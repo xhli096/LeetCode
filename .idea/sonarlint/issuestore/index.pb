@@ -62,8 +62,6 @@ h
 8src/main/java/com/xinghaol/programmer/RemoveElement.java,6/1/6112b9deaf283f96a5346f320263998540ca0e25
 m
 =src/main/java/com/xinghaol/programmer/IsRectangleOverlap.java,e/0/e085916429a4dc220cea6c7cd677377b6a33e332
-s
-Csrc/main/java/com/xinghaol/programmer/LengthOfLongestSubstring.java,5/4/54271aa53451c17605cb07b112316347e36bbf8d
 k
 ;src/main/java/com/xinghaol/programmer/InorderTraversal.java,c/6/c68ddf918a8976b553e6b680ee6dc2a9c15ff970
 l
@@ -220,3 +218,11 @@ u
 Esrc/main/java/com/xinghaol/programmer/binary/FindInMountainArray.java,f/1/f1690ca61c6512a7e732173b9a969a65abfdd243
 j
 :src/main/java/com/xinghaol/programmer/pointer/IsHappy.java,2/5/252ec5533aebcf4db30b1c7b0ff4d32213b41ecf
+p
+@src/main/java/com/xinghaol/programmer/list/DeleteDuplicates.java,3/6/362afc3bce2cd1c6d7f7b116a5d1fe7aec28e2f4
+m
+=src/main/java/com/xinghaol/programmer/list/MergeTwoLists.java,d/9/d97c88cae42bf6027b74a7b24e52199fbed7986e
+{
+Ksrc/main/java/com/xinghaol/programmer/pointer/LengthOfLongestSubstring.java,9/2/928904a6b7ad845d48f5f2b727340ecc3c6de609
+i
+9src/main/java/com/xinghaol/programmer/dp/MaxSubArray.java,f/8/f83cb5b1cfd6e20688c647c3e4c1a92a56ef6492

@@ -11,6 +11,8 @@ public class MaxSubArray {
      * current >  nums[index] => dp[i] = current;
      * else : dp[i] = nums[index];
      * max = Math.max(current, max);
+     * 时间复杂度：O(N)
+     * 空间复杂度：O(N)
      *
      * @param nums
      * @return
