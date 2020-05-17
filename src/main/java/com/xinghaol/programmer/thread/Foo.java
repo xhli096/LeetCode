@@ -1,4 +1,4 @@
-package com.xinghaol.programmer;
+package com.xinghaol.programmer.thread;
 
 import java.util.concurrent.CountDownLatch;
 
