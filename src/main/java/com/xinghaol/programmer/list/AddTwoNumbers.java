@@ -1,4 +1,4 @@
-package com.xinghaol.programmer;
+package com.xinghaol.programmer.list;
 
 /**
  * @author: lixinghao
@@ -90,7 +90,6 @@ public class AddTwoNumbers {
             list.add(val);
         }
         ListNode node = tmp1 == null ? tmp2 : tmp1;
-        System.out.println(node);
         if (node != null && max > min) {
             for (int i = min + 1; i <= max; i++) {
                 int val = node.getVal();
@@ -120,6 +119,55 @@ public class AddTwoNumbers {
         }
 
         return listNodeList.get(listNodeList.size() - 1);
+    }
+
+    private static ListNode addTwoNumbers2(ListNode l1, ListNode l2) {
+        if (l1 == null) {
+            return l2;
+        }
+        if (l2 == null) {
+            return l1;
+        }
+
+        ListNode head = new ListNode(-1);
+        ListNode current = head;
+        int carry = 0;
+
+        while (l1 != null && l2 != null) {
+            int value = l1.val + l2.val + carry;
+            carry = value / 10;
+            ListNode node = new ListNode(value % 10);
+            current.next = node;
+            current = current.next;
+            l1 = l1.next;
+            l2 = l2.next;
+        }
+        if (l1 != null) {
+            while (l1 != null) {
+                int value = l1.val + carry;
+                carry = value / 10;
+                ListNode node = new ListNode(value % 10);
+                current.next = node;
+                current = current.next;
+                l1 = l1.next;
+            }
+        }
+        if (l2 != null) {
+            while (l2 != null) {
+                int value = l2.val + carry;
+                carry = value / 10;
+                ListNode node = new ListNode(value % 10);
+                current.next = node;
+                current = current.next;
+                l2 = l2.next;
+            }
+        }
+
+        if (carry != 0) {
+            current.next = new ListNode(carry);
+        }
+
+        return head.next;
     }
 
     @Data

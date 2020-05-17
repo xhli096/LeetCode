@@ -11,9 +11,9 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 public class ListNode {
-    private int val;
+    int val;
 
-    private ListNode next;
+    ListNode next;
 
     public ListNode(int val) {
         this.val = val;
