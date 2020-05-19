@@ -302,3 +302,9 @@ t
 Dsrc/main/java/com/xinghaol/programmer/tree/DiameterOfBinaryTree.java,9/5/95c9baae452d6d805c7cbd95a192c5c866997203
 k
 ;src/main/java/com/xinghaol/programmer/array/MoveZeroes.java,9/d/9d6086af33ff3c834c3dcf4a4f8f17ef3b2bd6a5
+p
+@src/main/java/com/xinghaol/programmer/tree/ZigzagLevelOrder.java,7/f/7f5488ad1798f0dbf673b66d22a2243e2f66195d
+r
+Bsrc/main/java/com/xinghaol/programmer/array/ContainsDuplicate.java,c/d/cd648f0413d73b15c25ddb598d74f08a4b084b34
+h
+8src/main/java/com/xinghaol/programmer/dp/MaxProduct.java,0/4/0465e70adfc02d3597f428b5e3b34930563915e9
