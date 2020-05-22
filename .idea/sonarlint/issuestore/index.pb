@@ -308,3 +308,11 @@ r
 Bsrc/main/java/com/xinghaol/programmer/array/ContainsDuplicate.java,c/d/cd648f0413d73b15c25ddb598d74f08a4b084b34
 h
 8src/main/java/com/xinghaol/programmer/dp/MaxProduct.java,0/4/0465e70adfc02d3597f428b5e3b34930563915e9
+q
+Asrc/main/java/com/xinghaol/programmer/greedy/ValidPalindrome.java,a/7/a7844208e7ee3dd39cf4978852b4361a49882874
+m
+=src/main/java/com/xinghaol/programmer/math/TitleToNumber.java,4/7/4705a13941bedad985411c036142e64d17287017
+n
+>src/main/java/com/xinghaol/programmer/string/IsPalindrome.java,8/4/8466d48612bc40aecf9a00f65cddc99646f78653
+s
+Csrc/main/java/com/xinghaol/programmer/string/LongestPalindrome.java,9/b/9bfd3342b22996276f1e14133d433ea06ff74433
