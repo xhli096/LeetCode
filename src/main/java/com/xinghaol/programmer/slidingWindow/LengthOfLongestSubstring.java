@@ -1,4 +1,4 @@
-package com.xinghaol.programmer.pointer;
+package com.xinghaol.programmer.slidingWindow;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -49,12 +49,71 @@ public class LengthOfLongestSubstring {
         while (i < n && j < n) {
             if (!set.contains(s.charAt(j))) {
                 set.add(s.charAt(j++));
-                ans = Math.max(ans, j-i);
+                ans = Math.max(ans, j - i);
             } else {
                 set.remove(s.charAt(i++));
             }
         }
 
         return ans;
+    }
+
+    public int lengthOfLongestSubstring2(String s) {
+        int length = s.length();
+        Set<Character> set = new HashSet<>();
+        int left = 0;
+        int right = 0;
+        int maxLen = 0;
+        int currentLen = 0;
+        while (left < length && right < length) {
+            // 判断当前位置之前的字符串中是否存在这个字符。如果存在，则移除窗口左边的元素，直到当前元素不存在。
+            // 这时right-left的区间内才是一个没有重复字符的满足题意要求的结果。
+            if (!set.contains(s.charAt(right))) {
+                set.add(s.charAt(right));
+                right++;
+                currentLen++;
+            } else {
+                maxLen = Math.max(currentLen, maxLen);
+                currentLen--;
+                // 移除
+                set.remove(s.charAt(left));
+                left++;
+            }
+        }
+        maxLen = Math.max(currentLen, maxLen);
+
+        return maxLen;
+    }
+
+    public static void main(String[] args) {
+        LengthOfLongestSubstring lengthOfLongestSubstring = new LengthOfLongestSubstring();
+        int lengthOfLongestSubstring2 = lengthOfLongestSubstring.lengthOfLongestSubstring2(" ");
+        System.out.println(lengthOfLongestSubstring2);
+    }
+
+    public int lengthOfLongestSubstring3(String s) {
+        int length = s.length();
+        if (length == 0) {
+            return 0;
+        }
+        int left = 0;
+        int right = 0;
+        Set<Character> set = new HashSet<>();
+        int max = 0;
+
+        while (right < length) {
+            char c = s.charAt(right);
+            if (!set.contains(c)) {
+                set.add(c);
+                right++;
+                max = Math.max(max, right - left);
+            } else {
+                // 收缩窗口
+                set.remove(s.charAt(left));
+            }
+
+        }
+
+        return max;
     }
 }

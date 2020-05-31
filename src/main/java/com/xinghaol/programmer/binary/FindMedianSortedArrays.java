@@ -1,4 +1,6 @@
-package com.xinghaol.programmer;
+package com.xinghaol.programmer.binary;
+
+import java.util.Arrays;
 
 /**
  * @author: lixinghao
@@ -55,7 +57,7 @@ public class FindMedianSortedArrays {
         int length1 = nums1.length;
         int length2 = nums2.length;
 
-        // 如果length1+length2位奇数，则left和right的值相等；反之则为中间的两个数字
+        // 如果length1+length2为奇数，则left和right的值相等；反之则为中间的两个数字
         int left = (length1 + length2 + 1) / 2;
         int right = (length1 + length2 + 2) / 2;
 
@@ -84,5 +86,82 @@ public class FindMedianSortedArrays {
         } else {
             return findKth(nums1, i, nums2, j + k / 2, k - k / 2);
         }
+    }
+
+    /**
+     * 下面是自己写的错误的代码
+     *
+     * @param nums1
+     * @param nums2
+     * @return
+     */
+    public double findMedianSortedArrays2(int[] nums1, int[] nums2) {
+        int length1 = nums1.length;
+        int length2 = nums2.length;
+
+        // 去中间的那个数即可
+        double mid1 = 0.0;
+        if (length1 % 2 == 1) {
+            int left = 0;
+            int right = length1 - 1;
+            mid1 = nums1[left + (right - left) / 2];
+        } else {
+            int left = 0;
+            int right = length1 - 1;
+            int mid = left + (right - left) / 2;
+            mid1 = (nums1[mid] + nums1[mid + 1]) / 2.0;
+        }
+        double mid2 = 0.0;
+        if (length2 % 2 == 1) {
+            int left = 0;
+            int right = length2 - 1;
+            mid2 = nums2[left + (right - left) / 2];
+        } else {
+            int left = 0;
+            int right = length2 - 1;
+            int mid = left + (right - left) / 2;
+            mid2 = (nums2[mid] + nums2[mid + 1]) / 2.0;
+        }
+
+        return (mid1 + mid2) / 2;
+    }
+
+    /**
+     * 归并排序后找到中位数
+     *
+     * @param nums1
+     * @param nums2
+     * @return
+     */
+    public double findMedianSortedArrays3(int[] nums1, int[] nums2) {
+        int length1 = nums1.length;
+        int length2 = nums2.length;
+
+        int[] nums = new int[length1 + length2];
+        for (int i = 0; i < nums1.length; i++) {
+            nums[i] = nums1[i];
+        }
+
+        for (int i = length1; i < length1 + length2; i++) {
+            nums[i] = nums2[i - length1];
+        }
+        Arrays.sort(nums);
+
+        double result = 0.0;
+        int left = 0;
+        int right = nums.length - 1;
+        if (nums.length % 2 == 0) {
+            int mid = left + (right - left) / 2;
+            result = (nums[mid] + nums[mid + 1]) / 2.0;
+        } else {
+            result = nums[left + (right - left) / 2];
+        }
+        return result;
+    }
+
+    public static void main(String[] args) {
+        FindMedianSortedArrays findMedianSortedArrays = new FindMedianSortedArrays();
+        double result = findMedianSortedArrays.findMedianSortedArrays3(new int[]{1, 2}, new int[]{2});
+        System.out.println(result);
     }
 }

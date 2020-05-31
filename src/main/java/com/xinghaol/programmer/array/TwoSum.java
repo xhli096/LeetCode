@@ -1,4 +1,4 @@
-package com.xinghaol.programmer;
+package com.xinghaol.programmer.array;
 
 import java.util.HashMap;
 import java.util.Map;

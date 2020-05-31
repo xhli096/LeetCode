@@ -44,7 +44,7 @@ public class BuildTree {
     }
 
     public TreeNode buildTree(int[] preorder, int preorderStart, int preorderEnd, int[] inorder, int inorderStart, int inorderEnd, Map<Integer, Integer> indexMap) {
-        if (preorderStart > preorderEnd) {
+        if (preorderEnd > preorderStart) {
             return null;
         }
         int rootVal = preorder[preorderStart];
@@ -109,5 +109,53 @@ public class BuildTree {
         TreeNode(int x) {
             val = x;
         }
+    }
+
+
+    /**
+     * 递归解法
+     *
+     * @param preorder
+     * @param inorder
+     * @return
+     */
+    public TreeNode buildTree3(int[] preorder, int[] inorder) {
+        if (preorder == null || inorder == null) {
+            return null;
+        }
+        int length = preorder.length;
+        // value值，下标值
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < length; i++) {
+            map.put(inorder[i], i);
+        }
+        TreeNode root = build(preorder, inorder, 0, length - 1, 0, length - 1, map);
+
+        return root;
+    }
+
+    private TreeNode build(int[] preorder, int[] inorder, int preStartIndex, int preEndIndex, int inStartIndex, int inEndIndex, Map<Integer, Integer> map) {
+        // 如果开始index > endIndex，则递归结束
+        if (preStartIndex > preEndIndex) {
+            return null;
+        }
+        int rootValue = preorder[preStartIndex];
+        TreeNode root = new TreeNode(rootValue);
+        // 如果开始与结束index相同，则说明没有其他节点，直接返回即可。
+        if (preEndIndex == preStartIndex) {
+            return root;
+        } else {
+            int rootInDex = map.get(rootValue);
+            int leftNodesCount = rootInDex - inStartIndex;
+            root.left = build(preorder, inorder, preStartIndex + 1, preStartIndex + leftNodesCount, inStartIndex, rootInDex - 1, map);
+            root.right = build(preorder, inorder, preStartIndex + leftNodesCount + 1, preEndIndex, rootInDex + 1, inEndIndex, map);
+            return root;
+        }
+    }
+
+    public static void main(String[] args) {
+        BuildTree buildTree = new BuildTree();
+        TreeNode treeNode = buildTree.buildTree3(new int[]{3, 9, 20, 15, 7}, new int[]{9, 3, 15, 20, 7});
+        System.out.println(treeNode);
     }
 }
