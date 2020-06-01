@@ -8,8 +8,6 @@
 	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 c
 3src/main/java/com/xinghaol/programmer/MaxQueue.java,f/6/f6312319fad8afd5f71eff6691a00f3c84d9b737
-a
-1src/main/java/com/xinghaol/programmer/TwoSum.java,a/7/a75de4ced66b8bfcd7942f574398aafe2ab83c0e
 h
 8src/main/java/com/xinghaol/programmer/MissingNumber.java,5/7/571a5e076acad5fdaa2b8d90fb66fcc298de9aed
 g
@@ -354,3 +352,9 @@ n
 >src/main/java/com/xinghaol/programmer/string/DecodeString.java,4/e/4e5f43454358e50788da74cdf130c2a69af7c891
 g
 7src/main/java/com/xinghaol/programmer/thread/Demo1.java,a/4/a44f5267a96bd127d2af72f77ca770ec711d8757
+i
+9src/main/java/com/xinghaol/programmer/array/ThreeSum.java,a/b/ab601be5f0a69a44e6e5cb0b59c7aedc51686896
+g
+7src/main/java/com/xinghaol/programmer/array/TwoSum.java,6/b/6b35d4754fbb82ad76786a763f182cebfe3ae03c
+q
+Asrc/main/java/com/xinghaol/programmer/array/FindLengthOfLCIS.java,1/7/1743a237c5ac9fd7a883e7fe5e8d6c93ba7d0465

@@ -72,7 +72,50 @@ public class ThreeSum {
 
     public static void main(String[] args) {
         ThreeSum threeSum = new ThreeSum();
-        List<List<Integer>> result = threeSum.threeSum(new int[]{-1, 0, 1, 2, -1, -4});
+        List<List<Integer>> result = threeSum.threeSum2(new int[]{-1, 0, 1, 2, -1, -4}, 3);
         System.out.println(JSON.toJSONString(result));
+    }
+
+    public List<List<Integer>> threeSum2(int[] nums, int K) {
+        int length = nums.length;
+        List<List<Integer>> result = new ArrayList<>();
+        if (length < 3) {
+            return result;
+        }
+        // 对数组排序
+        Arrays.sort(nums);
+        for (int i = 0; i < length; i++) {
+            int current = nums[i];
+            // 如果大于0，找到了所有结果。
+            if (current > 0) {
+                break;
+            }
+            // nums[i] == nums[i - 1]，会导致重复结果的出现。
+            if (i > 0 && nums[i] == nums[i - 1]) {
+                continue;
+            }
+            int left = i + 1;
+            int right = length - 1;
+            while (left < right) {
+                int sum = nums[i] + nums[left] + nums[right];
+                if (sum == K) {
+                    result.add(Arrays.asList(nums[i], nums[left], nums[right]));
+                    while (left < right && nums[left] == nums[left + 1]) {
+                        left++;
+                    }
+                    while (left < right && nums[right] == nums[right - 1]) {
+                        right--;
+                    }
+                    left++;
+                    right--;
+                } else if (sum < K) {
+                    left++;
+                } else if (sum > K) {
+                    right--;
+                }
+            }
+        }
+
+        return result;
     }
 }
