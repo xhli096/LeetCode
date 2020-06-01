@@ -87,7 +87,7 @@ public class ThreeSum {
         for (int i = 0; i < length; i++) {
             int current = nums[i];
             // 如果大于0，找到了所有结果。
-            if (current > 0) {
+            if (current > K) {
                 break;
             }
             // nums[i] == nums[i - 1]，会导致重复结果的出现。
