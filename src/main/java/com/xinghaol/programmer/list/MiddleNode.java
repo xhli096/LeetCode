@@ -1,4 +1,4 @@
-package com.xinghaol.programmer;
+package com.xinghaol.programmer.list;
 
 /**
  * @author: lixinghao
@@ -53,6 +53,27 @@ public class MiddleNode {
         }
 
         return tail;
+    }
+
+    /**
+     * 快慢指针解法
+     *
+     * @param head
+     * @return
+     */
+    public ListNode middleNode2(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode slow = head;
+        ListNode fast = head.next.next;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        return slow.next;
     }
 
     class ListNode {

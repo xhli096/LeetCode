@@ -18,6 +18,12 @@ package com.xinghaol.programmer.dp;
  * 题解：https://leetcode-cn.com/problems/maximal-square/solution/li-jie-san-zhe-qu-zui-xiao-1-by-lzhlyle/
  */
 public class MaximalSquare {
+    /**
+     * 正方形的大小，限制于上方、左上和左边0的限制。只要出现0，则就要缩小。
+     *
+     * @param matrix
+     * @return
+     */
     public int maximalSquare(char[][] matrix) {
         int rows = matrix.length;
         if (rows <= 0) {

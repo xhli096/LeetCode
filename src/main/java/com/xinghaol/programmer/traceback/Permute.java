@@ -12,8 +12,6 @@ import java.util.List;
  */
 public class Permute {
     /**
-     * 错误代码示例
-     *
      * @param nums
      * @return
      */

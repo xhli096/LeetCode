@@ -12,8 +12,6 @@ h
 8src/main/java/com/xinghaol/programmer/MissingNumber.java,5/7/571a5e076acad5fdaa2b8d90fb66fcc298de9aed
 g
 7src/main/java/com/xinghaol/programmer/ReverseWords.java,1/4/141177281dabb2698c1d388088213d4ceb4857bb
-d
-4src/main/java/com/xinghaol/programmer/MaxProfit.java,f/6/f69c8e892663555aedfea4718a587f8c0252df02
 b
 2src/main/java/com/xinghaol/programmer/NumWays.java,1/3/13816fda1050eecde5f07bb9975071fc0956aec1
 p
@@ -58,8 +56,6 @@ g
 7src/main/java/com/xinghaol/programmer/TopKFrequent.java,5/6/561619d7e4574a7055cc01e159ce37a531595792
 p
 @src/main/java/com/xinghaol/programmer/MinIncrementForUnique.java,1/c/1c47a691ecdf8d64359f2fa0cfad74b7eca1ed82
-e
-5src/main/java/com/xinghaol/programmer/MiddleNode.java,9/1/914843d66992ba9c7db93e034a233e053848a75b
 S
 #src/main/resources/基础知识.txt,4/f/4fc3c8d3e8d29508a152fa29f90854f4ad95e7cf
 b
@@ -358,3 +354,17 @@ g
 7src/main/java/com/xinghaol/programmer/array/TwoSum.java,6/b/6b35d4754fbb82ad76786a763f182cebfe3ae03c
 q
 Asrc/main/java/com/xinghaol/programmer/array/FindLengthOfLCIS.java,1/7/1743a237c5ac9fd7a883e7fe5e8d6c93ba7d0465
+~
+Nsrc/main/java/com/xinghaol/programmer/traceback/回溯算法问题套路总结,7/c/7c834679492113dc2ef40e4fa0bb2c6bf4f56d62
+l
+<src/main/java/com/xinghaol/programmer/traceback/Permute.java,3/7/37269fa53c24f0fbed98870b0dda002f266842eb
+j
+:src/main/java/com/xinghaol/programmer/list/MiddleNode.java,9/d/9dab739323835aeae5e343017001cdc60ac782a3
+h
+8src/main/java/com/xinghaol/programmer/list/SortList.java,2/9/290b3d58d4ec6c00c8c1b791b0f139f1d8f65264
+g
+7src/main/java/com/xinghaol/programmer/dp/MaxProfit.java,e/d/ed91b3b70f91399e3a3110bb0fd7c7fc06a00330
+p
+@src/main/java/com/xinghaol/programmer/array/KidsWithCandies.java,8/7/8729cf8bac5cad115a5672e72b51566d780e61bb
+g
+7src/main/java/com/xinghaol/programmer/math/SumNums.java,7/4/7486beb8118933f83fae3e1097aedd71b49718db
