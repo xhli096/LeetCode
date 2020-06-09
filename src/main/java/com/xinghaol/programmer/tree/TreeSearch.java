@@ -1,0 +1,130 @@
+package com.xinghaol.programmer.tree;
+
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
+/**
+ * @author: lixinghao
+ * @date: 2020/6/7 5:50 下午
+ * @Description: 树的递归与非递归遍历
+ */
+public class TreeSearch {
+    private static Queue<TreeNode> preTraceQueue;
+    private static Queue<TreeNode> preStackTraceQueue;
+    private static Queue<TreeNode> midTraceQueue;
+    private static Queue<TreeNode> midStackTraceQueue;
+
+    static {
+        preTraceQueue = new LinkedList<>();
+        preStackTraceQueue = new LinkedList<>();
+        midTraceQueue = new LinkedList<>();
+        midStackTraceQueue = new LinkedList<>();
+    }
+
+    /**
+     * 先序递归遍历：根节点、左子树、右子树
+     *
+     * @param root
+     */
+    public void preTrace(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        preTraceQueue.offer(root);
+        preTrace(root.left);
+        preTrace(root.right);
+    }
+
+    public void preStackTrace(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            TreeNode currentNode = stack.pop();
+            preStackTraceQueue.offer(currentNode);
+            if (currentNode.right != null) {
+                stack.push(currentNode.right);
+            }
+            if (currentNode.left != null) {
+                stack.push(currentNode.left);
+            }
+        }
+    }
+
+    /**
+     * 二叉树的递归遍历
+     *
+     * @param root
+     */
+    public void midTrace(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        midTrace(root.left);
+        midTraceQueue.offer(root);
+        midTrace(root.right);
+    }
+
+    public void midStackTrace(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode current = root;
+        while (!stack.isEmpty() || current != null) {
+            // 先将左子树节点全部加入stack
+            while (current != null) {
+                stack.push(current);
+                current = current.left;
+            }
+            TreeNode node = stack.pop();
+            midStackTraceQueue.offer(node);
+            if (node.right != null) {
+                current = node.right;
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        TreeNode root = new TreeNode(1);
+        TreeNode rl = new TreeNode(2);
+        root.left = rl;
+        TreeNode rr = new TreeNode(3);
+        root.right = rr;
+
+        TreeNode rll = new TreeNode(4);
+        rl.left = rll;
+        TreeNode rlr = new TreeNode(5);
+        rl.right = rlr;
+
+        TreeNode rrl = new TreeNode(6);
+        rr.left = rrl;
+        TreeNode rrr = new TreeNode(7);
+        rr.right = rrr;
+
+        TreeSearch treeSearch = new TreeSearch();
+        treeSearch.preTrace(root);
+        treeSearch.preStackTrace(root);
+        while (!preTraceQueue.isEmpty()) {
+            System.out.print(preTraceQueue.poll().val + "  ");
+        }
+        System.out.println();
+        while (!preStackTraceQueue.isEmpty()) {
+            System.out.print(preStackTraceQueue.poll().val + "  ");
+        }
+        System.out.println();
+
+        treeSearch.midTrace(root);
+        treeSearch.midStackTrace(root);
+        while (!midTraceQueue.isEmpty()) {
+            System.out.print(midTraceQueue.poll().val + "  ");
+        }
+        System.out.println();
+        while (!midStackTraceQueue.isEmpty()) {
+            System.out.print(midStackTraceQueue.poll().val + "  ");
+        }
+    }
+}
