@@ -7,6 +7,12 @@ package com.xinghaol.programmer.string;
  * https://leetcode-cn.com/problems/valid-palindrome/
  */
 public class IsPalindrome {
+    /**
+     * 125题
+     *
+     * @param s
+     * @return
+     */
     public boolean isPalindrome(String s) {
         if (s.isEmpty()) {
             return true;
@@ -15,6 +21,7 @@ public class IsPalindrome {
         int right = s.length() - 1;
 
         while (left < right) {
+            // 越过左侧与右侧的非法字符
             while (left < s.length() && !isValid(s.charAt(left))) {
                 left++;
             }
@@ -43,8 +50,35 @@ public class IsPalindrome {
 
     public static void main(String[] args) {
         IsPalindrome isPalindrome = new IsPalindrome();
+/*
         System.out.println(isPalindrome.isValid(' '));
         boolean palindrome = isPalindrome.isPalindrome("A man, a plan, a canal: Panama");
         System.out.println(palindrome);
+*/
+
+        boolean result = isPalindrome.isPalindrome(121);
+        System.out.println(result);
+    }
+
+    /**
+     * 9 回文数
+     *
+     * @param x
+     * @return
+     */
+    public boolean isPalindrome(int x) {
+        if (x < 0) {
+            return false;
+        }
+        int result = 0;
+
+        int tmp = x;
+        while (tmp != 0) {
+            int count = tmp % 10;
+            tmp = tmp / 10;
+            result = result * 10 + count;
+        }
+
+        return result == x;
     }
 }

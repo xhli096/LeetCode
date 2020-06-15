@@ -24,11 +24,11 @@ public class ReverseKGroup {
             List<ListNode> listNodes = new ArrayList<>(k);
             for (int i = 1; i <= k; i++) {
                 if (fast != null) {
-                    ListNode node = new ListNode(fast.getVal());
-                    node.setNext(fast.getNext());
+                    ListNode node = new ListNode(fast.val);
+                    node.next = (fast.next);
                     listNodes.add(node);
 
-                    fast = fast.getNext();
+                    fast = fast.next;
                 } else {
                     break;
                 }
@@ -41,24 +41,24 @@ public class ReverseKGroup {
                     currentNode = buildList(listNodes, currentNode);
                 } else {
                     for (int i = 0; i < listNodes.size(); i++) {
-                        currentNode.setNext(listNodes.get(i));
-                        currentNode = currentNode.getNext();
+                        currentNode.next = (listNodes.get(i));
+                        currentNode = currentNode.next;
                     }
                 }
-                currentNode.setNext(null);
+                currentNode.next = (null);
                 break;
             }
         }
 
-        return newHead.getNext();
+        return newHead.next;
     }
 
     private ListNode buildList(List<ListNode> listNodes, ListNode currentNode) {
         int size = listNodes.size();
 
         for (int i = size - 1; i >= 0; i--) {
-            currentNode.setNext(listNodes.get(i));
-            currentNode = currentNode.getNext();
+            currentNode.next = (listNodes.get(i));
+            currentNode = currentNode.next;
         }
 
         return currentNode;

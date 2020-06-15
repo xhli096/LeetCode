@@ -1,6 +1,7 @@
 package com.xinghaol.net.tennis;
 
 import com.alibaba.fastjson.JSONObject;
+import com.sun.tools.internal.ws.wsdl.document.soap.SOAPUse;
 import com.xinghaol.net.tennis.util.HttpUtil;
 import com.xinghaol.net.tennis.vo.AddOrderResponseVo;
 import com.xinghaol.net.tennis.vo.TennisResponseVo;
@@ -38,8 +39,8 @@ import java.util.concurrent.ConcurrentHashMap;
  * @date: 2020/6/4 6:21 下午
  * @Description:
  */
-public class TennisTest {
-    private static String USERNAME = "15848017450";
+public class TennisTest2 {
+    private static String USERNAME = "13031000680";
     private static String PASSWORD = "diudiu521";
 
     private static String LOGIN_URL = "http://tennis.coopcloud.cn/TennisCenterInterface/umUser/userLogin.action?loginname=%s&password=%s";
@@ -58,7 +59,7 @@ public class TennisTest {
 
     public static void main(String[] args) throws IOException {
         init();
-        getTennisPlaceInfo();
+        // getTennisPlaceInfo();
         order();
     }
 
@@ -66,6 +67,7 @@ public class TennisTest {
         String response = HttpUtil.doGet(String.format(LOGIN_URL, USERNAME, PASSWORD));
         TennisResponseVo tennisResponseVo = JSONObject.parseObject(response, TennisResponseVo.class);
         cookiesMap.put("openid", tennisResponseVo.getDatas().getUser().getOpenid());
+        //System.out.println(cookiesMap);
         tennisUserInfo = tennisResponseVo.getDatas().getUser();
         login();
     }
@@ -97,13 +99,14 @@ public class TennisTest {
         while (true) {
             String ss = "JSESSIONID=" + cookiesMap.get("JSESSIONID") +
                     "; openid=" + cookiesMap.get("openid");
+            // System.out.println(ss);
             SimpleDateFormat YYYY_MM_DD = new SimpleDateFormat("yyyy-MM-dd");
 
             HttpPost httpPost = new HttpPost(ADD_ORDER_URL);
             // 创建集合 添加参数
             List<NameValuePair> list = new LinkedList<>();
             BasicNameValuePair userid = new BasicNameValuePair("userid", tennisUserInfo.getId() + "");
-            BasicNameValuePair parkList = new BasicNameValuePair("parkList", "[{\"date\":\"2020-06-14\",\"time\":\"16\",\"parkid\":\"36\",\"parkname\":\"\bF1\"},{\"date\":\"2020-06-14\",\"time\":\"17\",\"parkid\":\"36\",\"parkname\":\"F1\"}]");
+            BasicNameValuePair parkList = new BasicNameValuePair("parkList", "[{\"date\":\"2020-06-18\",\"time\":\"18\",\"parkid\":\"54\",\"parkname\":\"F5\"},{\"date\":\"2020-06-18\",\"time\":\"19\",\"parkid\":\"54\",\"parkname\":\"F5\"}]");
             BasicNameValuePair paywaycode = new BasicNameValuePair("paywaycode", "2");
             BasicNameValuePair addOrderType = new BasicNameValuePair("addOrderType", "wx");
             list.add(userid);
@@ -128,6 +131,7 @@ public class TennisTest {
             HttpResponse httpResponse = httpClient.execute(httpPost);
             // 将response对象转换成String类型
             String responseStr = EntityUtils.toString(httpResponse.getEntity(), "utf-8");
+            System.out.println(responseStr);
             AddOrderResponseVo addOrderResponseVo = JSONObject.parseObject(responseStr, AddOrderResponseVo.class);
             if (Integer.parseInt(addOrderResponseVo.getRespCode()) == 1001) {
                 System.out.println(addOrderResponseVo.getDatas().getOrderNo());

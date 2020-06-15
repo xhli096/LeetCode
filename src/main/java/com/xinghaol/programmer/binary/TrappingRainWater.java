@@ -1,4 +1,4 @@
-package com.xinghaol.programmer;
+package com.xinghaol.programmer.binary;
 
 /**
  * @author: lixinghao
@@ -30,11 +30,11 @@ public class TrappingRainWater {
             if (leftMax < rightMax) {
                 // 此时leftMax较小，可以存储leftMax-height[left]高度的水。
                 // 如果height[left] > leftMax，则此处无法存储水
-                result += leftMax - height[left] > 0 ? leftMax - height[left] : 0;
+                result += Math.max(leftMax - height[left], 0);
                 leftMax = Math.max(leftMax, height[left]);
                 left++;
             } else {
-                result += rightMax - height[right] > 0 ? rightMax - height[right] : 0;
+                result += Math.max(rightMax - height[right], 0);
                 rightMax = Math.max(rightMax, height[right]);
                 right--;
             }

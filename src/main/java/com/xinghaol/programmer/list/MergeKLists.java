@@ -1,9 +1,13 @@
 package com.xinghaol.programmer.list;
 
+import java.util.PriorityQueue;
+import java.util.Queue;
+
 /**
  * @author: lixinghao
  * @date: 2020/4/26 10:30 下午
- * @Description:
+ * @Description: 23. 合并K个排序链表
+ * https://leetcode-cn.com/problems/merge-k-sorted-lists/
  */
 public class MergeKLists {
     /**
@@ -60,5 +64,34 @@ public class MergeKLists {
         MergeKLists mergeKLists = new MergeKLists();
         ListNode listNode = mergeKLists.mergeKLists(listNodes);
         ListUtil.printLinkedList(listNode);
+    }
+
+    /**
+     * 使用优先队列
+     *
+     * @param lists
+     * @return
+     */
+    public ListNode mergeKLists2(ListNode[] lists) {
+        Queue<ListNode> pq = new PriorityQueue<>((v1, v2) -> v1.val - v2.val);
+        for (ListNode node : lists) {
+            if (node != null) {
+                pq.offer(node);
+            }
+        }
+
+        ListNode dummyHead = new ListNode(0);
+        ListNode tail = dummyHead;
+        while (!pq.isEmpty()) {
+            ListNode minNode = pq.poll();
+            tail.next = minNode;
+            tail = minNode;
+            // 将后续的链表结构也加入队列中
+            if (minNode.next != null) {
+                pq.offer(minNode.next);
+            }
+        }
+
+        return dummyHead.next;
     }
 }

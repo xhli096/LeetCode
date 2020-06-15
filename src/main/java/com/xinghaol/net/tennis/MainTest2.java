@@ -38,8 +38,8 @@ import java.util.concurrent.ConcurrentHashMap;
  * @date: 2020/6/4 6:21 下午
  * @Description:
  */
-public class TennisTest {
-    private static String USERNAME = "15848017450";
+public class MainTest2 {
+    private static String USERNAME = "18347090373";
     private static String PASSWORD = "diudiu521";
 
     private static String LOGIN_URL = "http://tennis.coopcloud.cn/TennisCenterInterface/umUser/userLogin.action?loginname=%s&password=%s";
@@ -103,7 +103,7 @@ public class TennisTest {
             // 创建集合 添加参数
             List<NameValuePair> list = new LinkedList<>();
             BasicNameValuePair userid = new BasicNameValuePair("userid", tennisUserInfo.getId() + "");
-            BasicNameValuePair parkList = new BasicNameValuePair("parkList", "[{\"date\":\"2020-06-14\",\"time\":\"16\",\"parkid\":\"36\",\"parkname\":\"\bF1\"},{\"date\":\"2020-06-14\",\"time\":\"17\",\"parkid\":\"36\",\"parkname\":\"F1\"}]");
+            BasicNameValuePair parkList = new BasicNameValuePair("parkList", "[{\"date\":\"2020-06-14\",\"time\":\"16\",\"parkid\":\"49\",\"parkname\":\"\bD1\"},{\"date\":\"2020-06-14\",\"time\":\"17\",\"parkid\":\"49\",\"parkname\":\"D1\"}]");
             BasicNameValuePair paywaycode = new BasicNameValuePair("paywaycode", "2");
             BasicNameValuePair addOrderType = new BasicNameValuePair("addOrderType", "wx");
             list.add(userid);
@@ -128,6 +128,7 @@ public class TennisTest {
             HttpResponse httpResponse = httpClient.execute(httpPost);
             // 将response对象转换成String类型
             String responseStr = EntityUtils.toString(httpResponse.getEntity(), "utf-8");
+            System.out.println(responseStr);
             AddOrderResponseVo addOrderResponseVo = JSONObject.parseObject(responseStr, AddOrderResponseVo.class);
             if (Integer.parseInt(addOrderResponseVo.getRespCode()) == 1001) {
                 System.out.println(addOrderResponseVo.getDatas().getOrderNo());

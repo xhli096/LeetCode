@@ -104,7 +104,9 @@ public class MainTest {
             // 创建集合 添加参数
             List<NameValuePair> list = new LinkedList<>();
             BasicNameValuePair userid = new BasicNameValuePair("userid", tennisUserInfo.getId() + "");
-            BasicNameValuePair parkList = new BasicNameValuePair("parkList", "[{\"date\":\"2020-06-12\",\"time\":\"19\",\"parkid\":\"49\",\"parkname\":\"D1\"},{\"date\":\"2020-06-12\",\"time\":\"20\",\"parkid\":\"49\",\"parkname\":\"D1\"}]");
+            BasicNameValuePair parkList = new BasicNameValuePair("parkList", "[{\"date\":\"2020-06-15\",\"time\":\"17\",\"parkid\":\"53\",\"parkname\":\"\bF4\"},{\"date\":\"2020-06-15\",\"time\":\"18\",\"parkid\":\"53\",\"parkname\":\"F4\"}]");
+            // [{"date":"2020-06-13","time":"8","parkid":"56","parkname":"G5草地"},{"date":"2020-06-13","time":"10","parkid":"56","parkname":"G5草地"}]
+            // [{"date":"2020-06-13","time":"10","parkid":"56","parkname":"G5草地"},{"date":"2020-06-13","time":"11","parkid":"56","parkname":"G5草地"}]
             BasicNameValuePair paywaycode = new BasicNameValuePair("paywaycode", "2");
             BasicNameValuePair addOrderType = new BasicNameValuePair("addOrderType", "wx");
             list.add(userid);
@@ -130,6 +132,7 @@ public class MainTest {
             // 将response对象转换成String类型
             String responseStr = EntityUtils.toString(httpResponse.getEntity(), "utf-8");
             AddOrderResponseVo addOrderResponseVo = JSONObject.parseObject(responseStr, AddOrderResponseVo.class);
+            System.out.println(responseStr);
             if (Integer.parseInt(addOrderResponseVo.getRespCode()) == 1001) {
                 System.out.println(addOrderResponseVo.getDatas().getOrderNo());
                 break;

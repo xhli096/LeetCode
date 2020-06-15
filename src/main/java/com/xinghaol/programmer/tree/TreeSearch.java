@@ -8,18 +8,23 @@ import java.util.Stack;
  * @author: lixinghao
  * @date: 2020/6/7 5:50 下午
  * @Description: 树的递归与非递归遍历
+ * 打通树的遍历的任通二脉
  */
 public class TreeSearch {
     private static Queue<TreeNode> preTraceQueue;
     private static Queue<TreeNode> preStackTraceQueue;
     private static Queue<TreeNode> midTraceQueue;
     private static Queue<TreeNode> midStackTraceQueue;
+    private static Queue<TreeNode> postTraceQueue;
+    private static Queue<TreeNode> postStackTraceQueue;
 
     static {
         preTraceQueue = new LinkedList<>();
         preStackTraceQueue = new LinkedList<>();
         midTraceQueue = new LinkedList<>();
         midStackTraceQueue = new LinkedList<>();
+        postTraceQueue = new LinkedList<>();
+        postStackTraceQueue = new LinkedList<>();
     }
 
     /**
@@ -55,7 +60,7 @@ public class TreeSearch {
     }
 
     /**
-     * 二叉树的递归遍历
+     * 中序递归遍历 左、中、右
      *
      * @param root
      */
@@ -88,6 +93,51 @@ public class TreeSearch {
         }
     }
 
+    /**
+     * 后续递归遍历
+     *
+     * @param root
+     */
+    public void postTrace(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        postTrace(root.left);
+        postTrace(root.right);
+        postTraceQueue.offer(root);
+    }
+
+    /**
+     * 非递归后续遍历，左、右、中
+     * 前序遍历：中、左、右 =》 中、右、左；
+     * 最后利用另外一个栈来完成逆序 =》 左、右、中
+     *
+     * @param root
+     */
+    public void postStackTrace(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        Stack<TreeNode> stack1 = new Stack<>();
+        Stack<TreeNode> stack2 = new Stack<>();
+        stack1.push(root);
+
+        while (!stack1.isEmpty()) {
+            TreeNode current = stack1.pop();
+            stack2.push(current);
+            if (current.left != null) {
+                stack1.push(current.left);
+            }
+            if (current.right != null) {
+                stack1.push(current.right);
+            }
+        }
+
+        while (!stack2.isEmpty()) {
+            postStackTraceQueue.offer(stack2.pop());
+        }
+    }
+
     public static void main(String[] args) {
         TreeNode root = new TreeNode(1);
         TreeNode rl = new TreeNode(2);
@@ -106,6 +156,7 @@ public class TreeSearch {
         rr.right = rrr;
 
         TreeSearch treeSearch = new TreeSearch();
+        // 先序遍历
         treeSearch.preTrace(root);
         treeSearch.preStackTrace(root);
         while (!preTraceQueue.isEmpty()) {
@@ -117,14 +168,27 @@ public class TreeSearch {
         }
         System.out.println();
 
+        // 中序遍历
         treeSearch.midTrace(root);
         treeSearch.midStackTrace(root);
         while (!midTraceQueue.isEmpty()) {
             System.out.print(midTraceQueue.poll().val + "  ");
         }
-        System.out.println();
+        System.out.println("");
         while (!midStackTraceQueue.isEmpty()) {
             System.out.print(midStackTraceQueue.poll().val + "  ");
+        }
+        System.out.println();
+
+        // 后续遍历
+        treeSearch.postTrace(root);
+        treeSearch.postStackTrace(root);
+        while (!postTraceQueue.isEmpty()) {
+            System.out.print(postTraceQueue.poll().val + "  ");
+        }
+        System.out.println();
+        while (!postStackTraceQueue.isEmpty()) {
+            System.out.print(postStackTraceQueue.poll().val + "  ");
         }
     }
 }

@@ -5,7 +5,7 @@ import java.util.Map;
 /**
  * @author: lixinghao
  * @date: 2020/5/19 10:57 下午
- * @Description:
+ * @Description: 171. Excel表列序号
  */
 public class TitleToNumber {
     private static Map<Character, Integer> map;

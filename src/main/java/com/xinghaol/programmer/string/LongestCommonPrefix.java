@@ -6,7 +6,8 @@ import java.util.List;
 /**
  * @author: lixinghao
  * @date: 2020/5/25 1:13 下午
- * @Description:
+ * @Description: 14. 最长公共前缀
+ * https://leetcode-cn.com/problems/longest-common-prefix/
  */
 public class LongestCommonPrefix {
     /**
@@ -60,8 +61,9 @@ public class LongestCommonPrefix {
         if (prefix == null || prefix.trim().length() == 0) {
             return "";
         }
+        // 如果有公共前缀，则一定会符合indexOf() == 0
         for (int i = 1; i < strs.length; i++) {
-            // 如果是以prefix为前缀的，则indexOf返回值为0
+            // 如果是以prefix为前缀的，所以indexOf的值一定为0
             while (strs[i].indexOf(prefix) != 0) {
                 // 每次缩小前缀串，当前缀串缩小为""时，返回空字符串。
                 prefix = prefix.substring(0, prefix.length() - 1);
@@ -71,7 +73,6 @@ public class LongestCommonPrefix {
             }
         }
         return prefix;
-
     }
 
     public static void main(String[] args) {
