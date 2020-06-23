@@ -1,7 +1,5 @@
 package com.xinghaol.programmer.tree;
 
-import com.alibaba.fastjson.JSON;
-
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -10,7 +8,8 @@ import java.util.Set;
 /**
  * @author: lixinghao
  * @date: 2020/5/10 11:22 上午
- * @Description:
+ * @Description: 236. 二叉树的最近公共祖先
+ * https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/
  */
 public class LowestCommonAncestor {
     private Map<Integer, TreeNode> parent = new HashMap<>();
@@ -48,6 +47,48 @@ public class LowestCommonAncestor {
             parent.put(root.right.val, root);
             dfs(root.right);
         }
+    }
+
+    /**
+     * 终止条件：
+     * 当越过叶节点，则直接返回 null ；
+     * 当 root 等于 p, q，则直接返回 root ；
+     * 递推工作：
+     * 开启递归左子节点，返回值记为 left ；
+     * 开启递归右子节点，返回值记为 right ；
+     * 返回值： 根据 left 和 right ，可展开为四种情况；
+     * 1、当 left 和 right 同时为空 ：说明 root 的左 / 右子树中都不包含 p, q ，返回 null ；
+     * 2、当 left 和 right 同时不为空 ：说明 p, q 分列在 root 的 异侧 （分别在 左 / 右子树），因此 root 为最近公共祖先，返回 root ；
+     * 3、当 left 为空 ，right 不为空 ：p, q 都不在 root 的左子树中，直接返回 right 。具体可分为两种情况：
+     * 3.1、p, q 其中一个在 root 的 右子树 中，此时 right 指向 p（假设为 p ）；
+     * 3.2、p, q 两节点都在 root 的 右子树 中，此时的 right 指向 最近公共祖先节点 ；
+     * 4、当 left 不为空 ， right 为空 ：与情况 3. 同理；
+     * <p>
+     * 复杂度分析：
+     * 时间复杂度 O(N) ： 其中 N 为二叉树节点数；最差情况下，需要递归遍历树的所有节点。
+     * 空间复杂度 O(N) ： 最差情况下，递归深度达到 N ，系统使用 O(N) 大小的额外空间。
+     *
+     * @param root
+     * @param p
+     * @param q
+     * @return
+     */
+    public TreeNode lowestCommonAncestor2(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null || root == p || root == q) {
+            return root;
+        }
+        TreeNode left = lowestCommonAncestor2(root.left, p, q);
+        TreeNode right = lowestCommonAncestor2(root.right, p, q);
+        // 不在左子树上
+        if (left == null) {
+            return right;
+        }
+        // 不在右子树上
+        if (right == null) {
+            return left;
+        }
+
+        return root;
     }
 
     static class TreeNode {
@@ -91,5 +132,49 @@ public class LowestCommonAncestor {
         LowestCommonAncestor lowestCommonAncestor = new LowestCommonAncestor();
         TreeNode node = lowestCommonAncestor.lowestCommonAncestor(root, node1, node2);
         System.out.println(node.toString());
+    }
+
+    /**
+     * 235. 二叉搜索树的最近公共祖先
+     * https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
+     * 终止条件：
+     * * 当越过叶节点，则直接返回 null ；
+     * * 当 root 等于 p, q，则直接返回 root ；
+     * * 递推工作：
+     * * 开启递归左子节点，返回值记为 left ；
+     * * 开启递归右子节点，返回值记为 right ；
+     * * 返回值： 根据 left 和 right ，可展开为四种情况；
+     * * 1、当 left 和 right 同时为空 ：说明 root 的左 / 右子树中都不包含 p, q ，返回 null ；
+     * * 2、当 left 和 right 同时不为空 ：说明 p, q 分列在 root 的 异侧 （分别在 左 / 右子树），因此 root 为最近公共祖先，返回 root ；
+     * * 3、当 left 为空 ，right 不为空 ：p, q 都不在 root 的左子树中，直接返回 right 。具体可分为两种情况：
+     * * 3.1、p, q 其中一个在 root 的 右子树 中，此时 right 指向 p（假设为 p ）；
+     * * 3.2、p, q 两节点都在 root 的 右子树 中，此时的 right 指向 最近公共祖先节点 ；
+     * * 4、当 left 不为空 ， right 为空 ：与情况 3. 同理；
+     * * <p>
+     * * 复杂度分析：
+     * * 时间复杂度 O(N) ： 其中 N 为二叉树节点数；最差情况下，需要递归遍历树的所有节点。
+     * * 空间复杂度 O(N) ： 最差情况下，递归深度达到 N ，系统使用 O(N) 大小的额外空间。
+     *
+     * @param root
+     * @param p
+     * @param q
+     * @return
+     */
+    public TreeNode lowestCommonAncestor3(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null || root == p || root == q) {
+            return root;
+        }
+        TreeNode left = lowestCommonAncestor3(root.left, p, q);
+        TreeNode right = lowestCommonAncestor3(root.right, p, q);
+        // 不在左子树上
+        if (left == null) {
+            return right;
+        }
+        // 不在右子树上
+        if (right == null) {
+            return left;
+        }
+
+        return root;
     }
 }

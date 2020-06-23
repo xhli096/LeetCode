@@ -58,4 +58,28 @@ public class TwoSum {
         }
         return result;
     }
+
+
+    /**
+     * 167. 两数之和 II - 输入有序数组
+     * https://leetcode-cn.com/problems/two-sum-ii-input-array-is-sorted/
+     * 虽然要求index1 < index2，但我们的程序是从先向后移动的，所以index1是一定小于index2的
+     *
+     * @param nums
+     * @param target
+     * @return
+     */
+    public int[] twoSum2(int[] nums, int target) {
+        int[] result = new int[2];
+        for (int i = 0; i < nums.length; i++) {
+            if (map.containsKey(nums[i])) {
+                result[1] = i + 1;
+                result[0] = map.get(nums[i]) + 1;
+
+                return result;
+            }
+            map.put(target - nums[i], i);
+        }
+        return result;
+    }
 }

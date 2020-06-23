@@ -23,6 +23,7 @@ public class Test {
                 result[i] = result[i - 1];
             }
         }
+        Thread thread = new Thread();
         System.out.println(JSON.toJSONString(result));
     }
 }

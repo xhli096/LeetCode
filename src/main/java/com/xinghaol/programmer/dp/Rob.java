@@ -10,6 +10,12 @@ import java.util.Arrays;
 public class Rob {
     private int[] memo;
 
+    /**
+     * 打家劫舍1
+     *
+     * @param nums
+     * @return
+     */
     public int rob(int[] nums) {
         int length = nums.length;
         if (length == 0) {
@@ -67,5 +73,16 @@ public class Rob {
         int rob1 = rob.rob(new int[]{2, 7, 9, 3, 1});
         System.out.println(rob1);
         System.out.println(rob.dp2(new int[]{2, 7, 9, 3, 1}, 0));
+    }
+
+    /**
+     * 213. 打家劫舍 II
+     * https://leetcode-cn.com/problems/house-robber-ii/
+     *
+     * @param nums
+     * @return
+     */
+    public int rob2(int[] nums) {
+        return 0;
     }
 }
