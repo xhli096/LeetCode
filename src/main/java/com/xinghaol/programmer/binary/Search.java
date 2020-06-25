@@ -84,8 +84,49 @@ public class Search {
 
     public static void main(String[] args) {
         Search search = new Search();
-        int i = search.search2(new int[]{4, 5, 6, 7, 0, 1, 2}, 3);
+        int i = search.search3(new int[]{1, 1, 2}, 1);
         System.out.println(i);
+    }
+
+    /**
+     * 剑指 Offer 53 - I. 在排序数组中查找数字 I
+     * https://leetcode-cn.com/problems/zai-pai-xu-shu-zu-zhong-cha-zhao-shu-zi-lcof/
+     *
+     * @param nums
+     * @param target
+     * @return
+     */
+    public int search3(int[] nums, int target) {
+        int length = nums.length;
+        if (length == 0) {
+            return 0;
+        }
+        int left = 0;
+        int right = length - 1;
+        int count = 0;
+        while (left <= right) {
+            int middle = left + (right - left) / 2;
+            if (nums[middle] == target) {
+                count++;
+                int index = middle - 1;
+                while (index >= 0 && nums[index] == target) {
+                    count++;
+                    index--;
+                }
+                index = middle + 1;
+                while (index < length && nums[index] == target) {
+                    count++;
+                    index++;
+                }
+                break;
+            } else if (nums[middle] <= target) {
+                left = middle;
+            } else {
+                right = middle - 1;
+            }
+        }
+
+        return count;
     }
 
 }

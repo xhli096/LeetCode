@@ -1,11 +1,55 @@
-package com.xinghaol.programmer;
+package com.xinghaol.programmer.array;
+
+import com.alibaba.fastjson.JSON;
 
 /**
  * @author: lixinghao
- * @date: 2020/4/7 11:50 上午
- * @Description:
+ * @date: 2020/6/23 11:26 下午
+ * @Description: 48. 旋转图像
+ * https://leetcode-cn.com/problems/rotate-image/
  */
 public class Rotate {
+    /**
+     * 先转置，再翻转，即可达到最优O(n^2)
+     *
+     * @param matrix
+     */
+    public void rotate(int[][] matrix) {
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+        if (rows == 0) {
+            return;
+        }
+        for (int i = 0; i < rows; i++) {
+            for (int j = i; j < cols; j++) {
+                int tmp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = tmp;
+            }
+        }
+        System.out.println(JSON.toJSONString(matrix));
+
+        // 翻转，以中间为轴，进行左右翻转
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols / 2; j++) {
+                int tmp = matrix[i][j];
+                matrix[i][j] = matrix[i][rows - j - 1];
+                matrix[i][rows - j - 1] = tmp;
+            }
+        }
+
+        System.out.println(JSON.toJSONString(matrix));
+    }
+
+    public static void main(String[] args) {
+        Rotate rotate = new Rotate();
+        rotate.rotate(new int[][]{
+                {1, 2, 3},
+                {4, 5, 6},
+                {7, 8, 9}
+        });
+    }
+
     /**
      * 第一行将放在最后一列，第二行放在倒数第二列。按行和按列来进行处理
      * 时间复杂度：O(N^2)
@@ -14,7 +58,7 @@ public class Rotate {
      *
      * @param matrix
      */
-    public void rotate(int[][] matrix) {
+    public void rotate2(int[][] matrix) {
         int[][] copyMatrix = new int[matrix.length][matrix[0].length];
 
         for (int i = 0; i < matrix.length; i++) {
@@ -37,7 +81,7 @@ public class Rotate {
      *
      * @param matrix
      */
-    public void rotate2(int[][] matrix) {
+    public void rotate3(int[][] matrix) {
         int length = matrix.length;
 
         // 先以对角线（左上-右下）为轴进行翻转。最后一行不需要处理，最后一行对角线元素右侧没有其他元素。
