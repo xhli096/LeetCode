@@ -1,4 +1,4 @@
-package com.xinghaol.programmer;
+package com.xinghaol.programmer.math;
 
 /**
  * @author: lixinghao

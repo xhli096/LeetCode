@@ -1,5 +1,8 @@
 package com.xinghaol.programmer.list;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * @author: lixinghao
  * @date: 2020/4/30 8:42 下午
@@ -57,6 +60,35 @@ public class DeleteDuplicates {
                 preNode.next = node;
                 node = node == null ? null : node.next;
             }
+        }
+
+        return newHead.next;
+    }
+
+    /**
+     * 面试题 02.01. 移除重复节点
+     * https://leetcode-cn.com/problems/remove-duplicate-node-lcci/description/
+     *
+     * @param head
+     * @return
+     */
+    public ListNode removeDuplicateNodes(ListNode head) {
+        if (head == null) {
+            return null;
+        }
+        Set<Integer> set = new HashSet<>();
+        ListNode newHead = new ListNode(-1);
+        newHead.next = head;
+        ListNode current = head;
+        set.add(head.val);
+        ListNode node = head.next;
+        while (node != null) {
+            if (!set.contains(node.val)) {
+                current.next = new ListNode(node.val);
+                current = current.next;
+                set.add(node.val);
+            }
+            node = node.next;
         }
 
         return newHead.next;
