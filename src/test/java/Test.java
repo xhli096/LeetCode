@@ -1,8 +1,8 @@
 import com.alibaba.fastjson.JSON;
-import com.google.common.collect.Lists;
+import extend.ParentClass;
+import extend.SubClass;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 /**
  * @author: lixinghao
@@ -27,7 +27,7 @@ public class Test {
         Thread thread = new Thread();
         System.out.println(JSON.toJSONString(result));*/
 
-        List<String> list = new ArrayList<>();
+        /*List<String> list = new ArrayList<>();
         list.add("1");
         list.add("2");
         for (String s : list) {
@@ -35,6 +35,16 @@ public class Test {
                 list.remove(s);
             }
         }
-        System.out.println(JSON.toJSONString(list));
+        System.out.println(JSON.toJSONString(list));*/
+
+        SubClass subClass = new SubClass("1", 2, new Date());
+        ParentClass parentClass = subClass;
+        System.out.println(JSON.toJSONString(subClass));
+        System.out.println(JSON.toJSONString(parentClass));
+
+        ParentClass parentClass1 = new ParentClass(1, "112233");
+        SubClass subClass1 = (SubClass) parentClass1;
+        System.out.println(JSON.toJSONString(parentClass1));
+        System.out.println(JSON.toJSONString(subClass1));
     }
 }

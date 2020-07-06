@@ -1,7 +1,5 @@
 package com.xinghaol.programmer.tree;
 
-import com.alibaba.fastjson.JSON;
-
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -32,9 +30,8 @@ public class WidthOfBinaryTree {
         list.addFirst(1);
         int max = 1;
         while (!queue.isEmpty()) {
-            System.out.println(JSON.toJSONString(queue));
             int size = queue.size();
-            for (int i = size; i > 0; i--) {
+            for (int i = 0; i < size; i++) {
                 TreeNode current = queue.poll();
                 Integer currentIndex = list.removeFirst();
                 if (current.left != null) {
