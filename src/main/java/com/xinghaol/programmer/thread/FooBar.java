@@ -1,5 +1,6 @@
 package com.xinghaol.programmer.thread;
 
+import java.util.concurrent.Semaphore;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -55,6 +56,7 @@ public class FooBar {
     private static final Condition conditionB = lock.newCondition();
     private static volatile String s = "foo";
 
+
     public static void main(String[] args) throws InterruptedException {
         n = 2;
         foo(new Runnable() {
@@ -102,6 +104,28 @@ public class FooBar {
             printBar.run();
             conditionA.signal();
             lock.unlock();
+        }
+    }
+
+    /**
+     * 信号量解法
+     */
+    private Semaphore foo = new Semaphore(1);
+    private Semaphore bar = new Semaphore(0);
+
+    public void foo2(Runnable printFoo) throws InterruptedException {
+        for (int i = 0; i < n; i++) {
+            foo.acquire();
+            printFoo.run();
+            bar.release();
+        }
+    }
+
+    public void bar2(Runnable printBar) throws InterruptedException {
+        for (int i = 0; i < n; i++) {
+            bar.acquire();
+            printBar.run();
+            foo.release();
         }
     }
 }
