@@ -1,4 +1,4 @@
-package com.xinghaol.programmer.greedy;
+package com.xinghaol.programmer.string;
 
 /**
  * @author: lixinghao

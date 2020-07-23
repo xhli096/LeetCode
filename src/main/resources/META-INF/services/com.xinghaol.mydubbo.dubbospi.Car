@@ -1,0 +1,3 @@
+red=com.xinghaol.mydubbo.dubbospi.impl.RedCar
+black=com.xinghaol.mydubbo.dubbospi.impl.BlackCar
+com.xinghaol.mydubbo.dubbospi.impl.CarWrapper

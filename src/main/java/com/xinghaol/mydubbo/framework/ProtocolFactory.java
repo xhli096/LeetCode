@@ -13,6 +13,9 @@ public class ProtocolFactory {
      * java spi，读取META-INF.services下的以类全路径名称开头文件中的内容；
      * mysql 是使用的spi；但是如果暴露多个服务，在读取后选择那个服务进行实现不方便，只能返回一个协议
      * 即Iterator<Protocol> iterator = serviceLoader.iterator(); =》 dubbo spi
+     * <p>
+     * java spi 无法指定获取某一个特定的实现类
+     * Java spim没有IOC和AOP机制
      *
      * @return
      */
