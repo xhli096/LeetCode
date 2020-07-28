@@ -22,7 +22,7 @@ public class WeightedLoadBalance extends AbstractLoadBalance {
         int tmp = 0;
         for (Balanceable balanceable : servers) {
             tmp += balanceable.getWeight();
-            if (tmp >= seed) {
+            if (tmp >= random) {
                 return balanceable;
             }
         }

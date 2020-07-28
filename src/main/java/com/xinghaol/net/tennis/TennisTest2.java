@@ -1,7 +1,6 @@
 package com.xinghaol.net.tennis;
 
 import com.alibaba.fastjson.JSONObject;
-import com.sun.tools.internal.ws.wsdl.document.soap.SOAPUse;
 import com.xinghaol.net.tennis.util.HttpUtil;
 import com.xinghaol.net.tennis.vo.AddOrderResponseVo;
 import com.xinghaol.net.tennis.vo.TennisResponseVo;

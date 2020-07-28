@@ -8,7 +8,7 @@ import java.util.Random;
 /**
  * @author: lixinghao
  * @date: 2020/7/22 11:37 下午
- * @Description:
+ * @Description: 最小连接数的负载均衡算法
  */
 public class LeastConnectionsLoadBalance extends AbstractLoadBalance {
 
@@ -66,15 +66,18 @@ public class LeastConnectionsLoadBalance extends AbstractLoadBalance {
         Random random = new Random();
         // 存在相同的最小连接数的服务器，且它们之间的权重不同，则根据权重来选择一个
         if (!sameWeight && totalWeight > 0) {
-            int offsetWeight = random.nextInt(totalWeight);
+            // 这里的+1操作为了防止某一个server无法被选中的局面
+            int offsetWeight = random.nextInt(totalWeight) + 1;
             for (int i = 0; i < leastCount; i++) {
                 int leastIndex = leastIndexs[i];
+                // 获取权重值，并让随机数减去权重值
                 offsetWeight -= servers.get(leastIndex).getWeight();
                 if (offsetWeight <= 0) {
                     return servers.get(leastIndex);
                 }
             }
         }
+        // 退出循环后，可能在经过leastCount次运算后，offsetWeight还是一个大于0的，无法选中server
 
         // 存在相同的最小连接数的服务器，且它们之间的权重相同，随机返回去一个即可。
         return servers.get(leastIndexs[random.nextInt(leastCount)]);

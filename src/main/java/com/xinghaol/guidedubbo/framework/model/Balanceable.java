@@ -14,7 +14,16 @@ import java.io.Serializable;
 @Accessors(chain = true)
 public class Balanceable implements Serializable {
     private String serverAddress;
-    private int weight;
+    private int weight = 1;
     private int active;
 
+    public Balanceable(String serverAddress) {
+        this.serverAddress = serverAddress;
+    }
+
+    public Balanceable(String serverAddress, int weight, int active) {
+        this.serverAddress = serverAddress;
+        this.weight = weight;
+        this.active = active;
+    }
 }

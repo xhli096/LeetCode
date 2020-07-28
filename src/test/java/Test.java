@@ -1,8 +1,5 @@
-import com.alibaba.fastjson.JSON;
-import extend.ParentClass;
-import extend.SubClass;
-
-import java.util.Date;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 /**
  * @author: lixinghao
@@ -37,7 +34,7 @@ public class Test {
         }
         System.out.println(JSON.toJSONString(list));*/
 
-        SubClass subClass = new SubClass("1", 2, new Date());
+        /*SubClass subClass = new SubClass("1", 2, new Date());
         ParentClass parentClass = subClass;
         System.out.println(JSON.toJSONString(subClass));
         System.out.println(JSON.toJSONString(parentClass));
@@ -45,6 +42,11 @@ public class Test {
         ParentClass parentClass1 = new ParentClass(1, "112233");
         SubClass subClass1 = (SubClass) parentClass1;
         System.out.println(JSON.toJSONString(parentClass1));
-        System.out.println(JSON.toJSONString(subClass1));
+        System.out.println(JSON.toJSONString(subClass1));*/
+        try {
+            System.out.println(InetAddress.getLocalHost().getHostAddress());
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
     }
 }
