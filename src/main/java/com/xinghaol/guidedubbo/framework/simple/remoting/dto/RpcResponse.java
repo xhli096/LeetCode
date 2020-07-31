@@ -1,5 +1,6 @@
 package com.xinghaol.guidedubbo.framework.simple.remoting.dto;
 
+import com.xinghaol.guidedubbo.framework.common.enumeration.RpcResponseCode;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -44,5 +45,12 @@ public class RpcResponse<T> implements Serializable {
         }
 
         return rpcResponse;
+    }
+
+    public static <T> RpcResponse<T> fail(RpcResponseCode rpcResponseCode) {
+        RpcResponse<T> response = new RpcResponse<>();
+        response.setCode(rpcResponseCode.getCode());
+        response.setMessage(rpcResponseCode.getMessage());
+        return response;
     }
 }

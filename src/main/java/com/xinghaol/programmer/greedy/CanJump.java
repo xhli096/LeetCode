@@ -53,6 +53,21 @@ public class CanJump {
         return false;
     }
 
+    public boolean canJump3(int[] nums) {
+        int n = nums.length;
+        // 记录可以到达的最远位置
+        int rightmost = 0;
+        for (int i = 0; i < n; ++i) {
+            if (i <= rightmost) {
+                rightmost = Math.max(rightmost, i + nums[i]);
+                if (rightmost >= n - 1) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     /**
      * 这样处理应该是对的，但是超时了
      *

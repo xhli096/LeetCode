@@ -1,11 +1,17 @@
 package com.xinghaol.guidedubbo.framework.simple.remoting.transport.netty;
 
 import com.xinghaol.guidedubbo.framework.common.enumeration.RpcMessageType;
+import com.xinghaol.guidedubbo.framework.common.enumeration.RpcResponseCode;
 import com.xinghaol.guidedubbo.framework.common.factory.SingletonFactory;
 import com.xinghaol.guidedubbo.framework.simple.remoting.dto.RpcRequest;
+import com.xinghaol.guidedubbo.framework.simple.remoting.dto.RpcResponse;
 import com.xinghaol.guidedubbo.framework.simple.remoting.handler.RpcRequestHandler;
+import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.handler.timeout.IdleState;
+import io.netty.handler.timeout.IdleStateEvent;
+import io.netty.util.ReferenceCountUtil;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -34,15 +40,29 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
      */
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        log.info("server receive msg : [{}]", msg);
-        RpcRequest rpcRequest = (RpcRequest) msg;
-        // 如果是心跳请求，不处理这个请求
-        if (rpcRequest.getRpcMessageType() == RpcMessageType.HEART_BEAT) {
-            log.info("receive heat beat msg from client");
-            return;
+        try {
+            log.info("server receive msg : [{}]", msg);
+            RpcRequest rpcRequest = (RpcRequest) msg;
+            // 如果是心跳请求，不处理这个请求
+            if (rpcRequest.getRpcMessageType() == RpcMessageType.HEART_BEAT) {
+                log.info("receive heat beat msg from client");
+                return;
+            }
+            // Execute the target method (the method the client needs to execute) and return the method result
+            // 运行目标方法，并得到方法的返回值
+            Object result = rpcRequestHandler.handler(rpcRequest);
+            log.info(String.format("server get result : %s", result));
+            if (ctx.channel().isActive() && ctx.channel().isWritable()) {
+                RpcResponse<Object> success = RpcResponse.success(result, rpcRequest.getRequestId());
+                ctx.writeAndFlush(success).addListener(ChannelFutureListener.CLOSE_ON_FAILURE);
+            } else {
+                RpcResponse<Object> fail = RpcResponse.fail(RpcResponseCode.FAIL);
+                ctx.writeAndFlush(fail).addListener(ChannelFutureListener.CLOSE_ON_FAILURE);
+                log.error("not writable now, message dropped");
+            }
+        } finally {
+            ReferenceCountUtil.release(msg);
         }
-        // Execute the target method (the method the client needs to execute) and return the method result
-        // 运行目标方法，并得到方法的返回值
     }
 
     /**
@@ -56,7 +76,15 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
      */
     @Override
     public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
-        super.userEventTriggered(ctx, evt);
+        if (evt instanceof IdleStateEvent) {
+            IdleState state = ((IdleStateEvent) evt).state();
+            if (state == IdleState.READER_IDLE) {
+                log.info("idle check happen, so close the connection");
+                ctx.close();
+            }
+        } else {
+            super.userEventTriggered(ctx, evt);
+        }
     }
 
     /**
@@ -70,6 +98,8 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
      */
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-        super.exceptionCaught(ctx, cause);
+        log.error("server catch exception");
+        cause.printStackTrace();
+        ctx.close();
     }
 }

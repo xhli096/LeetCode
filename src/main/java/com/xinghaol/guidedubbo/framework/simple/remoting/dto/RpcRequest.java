@@ -1,6 +1,7 @@
 package com.xinghaol.guidedubbo.framework.simple.remoting.dto;
 
 import com.xinghaol.guidedubbo.framework.common.enumeration.RpcMessageType;
+import com.xinghaol.guidedubbo.framework.model.RpcServiceProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -50,4 +51,10 @@ public class RpcRequest implements Serializable {
      * 消息类型
      */
     private RpcMessageType rpcMessageType;
+
+    public RpcServiceProperties toRpcProperties() {
+        return RpcServiceProperties.builder().serviceName(this.getInterfaceName())
+                .version(this.getVersion())
+                .group(this.getGroup()).build();
+    }
 }
