@@ -1,5 +1,7 @@
-import java.net.InetAddress;
-import java.net.UnknownHostException;
+import com.alibaba.fastjson.JSON;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author: lixinghao
@@ -43,10 +45,20 @@ public class Test {
         SubClass subClass1 = (SubClass) parentClass1;
         System.out.println(JSON.toJSONString(parentClass1));
         System.out.println(JSON.toJSONString(subClass1));*/
+/*
         try {
             System.out.println(InetAddress.getLocalHost().getHostAddress());
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
+*/
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(5);
+        System.out.println(JSON.toJSONString(list));
+        List<Integer> list1 = JSON.parseArray("[1,2,3,5]", Integer.class);
+        System.out.println(list1);
     }
 }

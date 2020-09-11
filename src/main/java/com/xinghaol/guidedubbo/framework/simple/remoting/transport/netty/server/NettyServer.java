@@ -1,4 +1,4 @@
-package com.xinghaol.guidedubbo.framework.simple.remoting.transport.netty;
+package com.xinghaol.guidedubbo.framework.simple.remoting.transport.netty.server;
 
 import com.xinghaol.guidedubbo.framework.common.factory.SingletonFactory;
 import com.xinghaol.guidedubbo.framework.model.RpcServiceProperties;
@@ -7,6 +7,8 @@ import com.xinghaol.guidedubbo.framework.simple.provider.ServiceProvider;
 import com.xinghaol.guidedubbo.framework.simple.provider.ServiceProviderImpl;
 import com.xinghaol.guidedubbo.framework.simple.remoting.dto.RpcRequest;
 import com.xinghaol.guidedubbo.framework.simple.remoting.dto.RpcResponse;
+import com.xinghaol.guidedubbo.framework.simple.remoting.transport.netty.NettyKryoDecoder;
+import com.xinghaol.guidedubbo.framework.simple.remoting.transport.netty.NettyKryoEncoder;
 import com.xinghaol.guidedubbo.framework.simple.serializer.kyro.KryoSerializer;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -38,6 +40,10 @@ public class NettyServer implements InitializingBean {
 
     private final ServiceProvider serviceProvider = SingletonFactory.getInstance(ServiceProviderImpl.class);
 
+    public void registerService(Object service) {
+        serviceProvider.publishService(service);
+    }
+
     public void registerService(Object service, RpcServiceProperties rpcServiceProperties) {
         serviceProvider.publishService(service, rpcServiceProperties);
     }
@@ -55,10 +61,14 @@ public class NettyServer implements InitializingBean {
             ServerBootstrap bootstrap = new ServerBootstrap();
             bootstrap.group(bossGroup, workerGroup)
                     .channel(NioServerSocketChannel.class)
+                    // TCP默认开启了Nagle算法,该算法的作用是尽可能的发送大数据块,减少网络传输.TCP_NODELAY参数的作用就是控制是否启用Nagle算法
                     .childOption(ChannelOption.TCP_NODELAY, true)
+                    // 是否开启TCP底层心跳机制
                     .childOption(ChannelOption.SO_KEEPALIVE, true)
+                    // 表示系统用于临时存放已经完成三次握手的请求的队列的最大长度；如果连接建立频繁，服务器处理创建新连接比较慢，可以适当调大这个参数。
                     .option(ChannelOption.SO_BACKLOG, 128)
                     .handler(new LoggingHandler(LogLevel.INFO))
+                    // 当客户端第一次请求的时候才会进行初始化
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {

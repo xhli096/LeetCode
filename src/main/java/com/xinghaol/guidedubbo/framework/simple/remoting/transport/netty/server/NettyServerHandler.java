@@ -1,4 +1,4 @@
-package com.xinghaol.guidedubbo.framework.simple.remoting.transport.netty;
+package com.xinghaol.guidedubbo.framework.simple.remoting.transport.netty.server;
 
 import com.xinghaol.guidedubbo.framework.common.enumeration.RpcMessageType;
 import com.xinghaol.guidedubbo.framework.common.enumeration.RpcResponseCode;

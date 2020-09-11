@@ -70,4 +70,10 @@ public class LengthOfLIS {
 
         return max;
     }
+
+    public static void main(String[] args) {
+        Integer a = null;
+        int b = a + 1;
+        System.out.println(b);
+    }
 }
