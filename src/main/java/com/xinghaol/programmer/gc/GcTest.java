@@ -3,6 +3,9 @@ package com.xinghaol.programmer.gc;
 import java.util.HashMap;
 import java.util.Map;
 
+import jdk.nashorn.internal.runtime.regexp.joni.Matcher;
+import jdk.nashorn.internal.runtime.regexp.joni.Regex;
+
 /**
  * @author: lixinghao
  * @date: 2020/3/26 3:15 下午
@@ -10,12 +13,12 @@ import java.util.Map;
  */
 public class GcTest {
     public static void main(String[] args) {
-        byte[] allocation1, allocation2;
-        allocation1 = new byte[59000*1024];
-        allocation2 = new byte[900*1024];
-
-        String s = "abcd";
-        Map<Character, Integer> map = new HashMap<>();
-        
+        String s = "122334-￥￥￥￥￥￥￥443322";
+        boolean matches = s.matches("^[0-9]+$");
+        if (matches) {
+            System.out.println("全部是数字");
+        } else {
+            System.out.println("存在非数字");
+        }
     }
 }
