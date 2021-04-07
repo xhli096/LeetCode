@@ -1,6 +1,6 @@
 package com.xinghaol.programmer.array;
 
-import com.alibaba.fastjson.JSON;
+import java.util.Stack;
 
 /**
  * @author: lixinghao
@@ -9,21 +9,37 @@ import com.alibaba.fastjson.JSON;
  */
 public class RemoveDuplicateLetters {
     public String smallestSubsequence(String s) {
-        int[] alpha = new int[26];
-        int length = s.length();
-        for(int i = 0; i < length; i++) {
-            if(alpha[s.charAt(i) - 'a'] == 0) {
-                alpha[s.charAt(i) - 'a'] = 1;
-            }
-        }
-        StringBuffer sb = new StringBuffer();
-        for(int i = 0; i < 26; i++) {
-            if(alpha[i] == 1) {
-                sb.append((char)(i+97));
-            }
+        int[] count = new int[256];
+        for(char c : s.toCharArray()) {
+            count[c]++;
         }
 
-        return sb.toString();
+        boolean[] flag = new boolean[256];
+        Stack<Character> stack = new Stack<>();
+        for(char c : s.toCharArray()) {
+            count[c]--;
+            if (flag[c]) {
+                continue;
+            }
+
+            while (!stack.isEmpty() && stack.peek() > c) {
+                // 若之后不存在栈顶元素了，则停止 pop
+                if (count[stack.peek()] == 0) {
+                    break;
+                }
+                flag[stack.peek()] = false;
+                stack.pop();
+            }
+            stack.push(c);
+            flag[c] = true;
+        }
+
+        StringBuilder stringBuilder = new StringBuilder();
+        while (!stack.isEmpty()) {
+            stringBuilder.append(stack.pop());
+        }
+
+        return stringBuilder.reverse().toString();
     }
 
     public static void main(String[] args) {
