@@ -7,6 +7,49 @@ package com.xinghaol.programmer.binary;
  * 继续体会二分查找的模板了
  */
 public class Search2 {
+
+    public boolean search2(int[] nums, int target) {
+        int length = nums.length;
+        if (length == 0) {
+            return false;
+        }
+
+        int left = 0;
+        int right = length - 1;
+
+        while (left < right) {
+            int middle = left + (right - left) / 2;
+            // 判断那一侧有序
+            if (nums[middle] > nums[left]) {
+                // 左侧有序
+                if (nums[left] <= target && target <= nums[middle]) {
+                    right = middle;
+                } else {
+                    left = middle + 1;
+                }
+            } else if (nums[middle] < nums[left]) {
+                // 右侧有序
+                if (nums[middle] < target && target <= nums[right]) {
+                    left = middle + 1;
+                } else {
+                    right = middle;
+                }
+            } else {
+                // nums[mid] == nums[left]，排除左侧边界不为target值，左侧边界向右靠近
+                if (nums[left] == target) {
+                    return true;
+                } else {
+                    left = left + 1;
+                }
+            }
+        }
+        if (nums[left] == target) {
+            return true;
+        }
+
+        return false;
+    }
+
     public boolean search(int[] nums, int target) {
         int length = nums.length;
         if (length == 0) {
@@ -50,7 +93,7 @@ public class Search2 {
 
     public static void main(String[] args) {
         Search2 search2 = new Search2();
-        boolean search = search2.search(new int[]{1, 3}, 3);
+        boolean search = search2.search(new int[] { 1, 3 }, 3);
         System.out.println(search);
     }
 }
