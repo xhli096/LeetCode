@@ -25,6 +25,8 @@ public class FindMinimumInRotatedSortedArray {
                 // 右侧有序
                 right = mid;
             }
+
+            left = mid;
         }
 
         return nums[left];
