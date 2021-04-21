@@ -1,9 +1,9 @@
 package com.xinghaol.programmer.array;
 
-import com.alibaba.fastjson.JSON;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import com.alibaba.fastjson.JSON;
 
 /**
  * @author: lixinghao
@@ -19,10 +19,12 @@ import java.util.List;
  * [5,6]
  */
 public class FindDisappearedNumbers {
+
     /**
      * 大数据量下会超时
      *
      * @param nums
+     *
      * @return
      */
     public List<Integer> findDisappearedNumbers(int[] nums) {
@@ -49,6 +51,7 @@ public class FindDisappearedNumbers {
      * 原地修改法，第一次修改以nums[i]为下标的，第二次统计整数
      *
      * @param nums
+     *
      * @return
      */
     public List<Integer> findDisappearedNumbers2(int[] nums) {
@@ -73,7 +76,44 @@ public class FindDisappearedNumbers {
 
     public static void main(String[] args) {
         FindDisappearedNumbers findDisappearedNumbers = new FindDisappearedNumbers();
-        List<Integer> disappearedNumbers = findDisappearedNumbers.findDisappearedNumbers(new int[]{4, 3, 2, 7, 8, 2, 3, 1});
+        List<Integer> disappearedNumbers = findDisappearedNumbers.findDisappearedNumbers(new int[] { 4, 3, 2, 7, 8, 2, 3, 1 });
         System.out.println(JSON.toJSONString(disappearedNumbers));
+    }
+
+    /**
+     * 抽屉法，一次遍历
+     *
+     * @param nums
+     *
+     * @return
+     */
+    public List<Integer> findDisappearedNumbers3(int[] nums) {
+        int length = nums.length;
+        if (length == 0) {
+            return new ArrayList<>();
+        }
+        for (int i = 0; i < length; i++) {
+            while (nums[nums[i] - 1] != nums[i]) {
+                swap(nums, nums[i] - 1, i);
+            }
+        }
+
+        List<Integer> result = new ArrayList<>();
+        for (int i = 0; i < length; i++) {
+            if (nums[i] - 1 != i) {
+                result.add(i + 1);
+            }
+        }
+
+        return result;
+    }
+
+    private void swap(int[] nums, int index1, int index2) {
+        if (index1 == index2) {
+            return;
+        }
+        nums[index1] = nums[index1] ^ nums[index2];
+        nums[index2] = nums[index2] ^ nums[index1];
+        nums[index1] = nums[index1] ^ nums[index2];
     }
 }
